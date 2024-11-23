@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Debug)
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(WAYLAND_CLIENT REQUIRED wayland-client)
 pkg_check_modules(XKBCOMMON REQUIRED xkbcommon)
 pkg_check_modules(XKBREGISTRY REQUIRED xkbregistry)
 pkg_check_modules(JSONCPP jsoncpp)
@@ -20,14 +19,12 @@ target_include_directories(
         zdhpctl
         PRIVATE
         ${PROJECT_SOURCE_DIR}/include
-        ${WAYLAND_CLIENT_INCLUDE_DIRS}
         ${XKBCOMMON_INCLUDE_DIRS}
         ${XKBREGISTRY_INCLUDE_DIRS}
 )
 target_link_libraries(
         zdhpctl
         PRIVATE
-        -lwayland-client
         ${XKBCOMMON_LIBRARIES}
         ${XKBREGISTRY_LIBRARIES}
         ${JSONCPP_LIBRARIES}
