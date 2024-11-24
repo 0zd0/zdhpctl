@@ -12,8 +12,7 @@ pkg_check_modules(JSONCPP jsoncpp)
 find_package(fmt REQUIRED)
 
 file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
-add_executable(zdhpctl main.cpp ${SOURCE_FILES}
-        include/modules/hyprland/extract.hpp)
+add_executable(zdhpctl main.cpp ${SOURCE_FILES})
 
 target_include_directories(
         zdhpctl
@@ -30,3 +29,7 @@ target_link_libraries(
         ${JSONCPP_LIBRARIES}
         fmt::fmt
 )
+
+install(TARGETS zdhpctl
+        RUNTIME DESTINATION /usr/bin
+        COMPONENT runtime)
